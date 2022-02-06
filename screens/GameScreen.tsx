@@ -1,26 +1,60 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'native-base';
 
 import { Text, View } from '../components/Themed';
 import Leaderboard from '../components/GameScreen/Leaderboard';
 import RuleScreen from '../components/GameScreen/RuleScreen';
 import Enlist from '../components/GameScreen/Enlist';
+import { API_URL } from '../utils/constants';
+import UserPage from '../components/GameScreen/UserPage';
+
+export interface UserData {
+  name: string;
+}
 
 export default function TabTwoScreen() {
   const originalDate = Date.now() + 100000000;
   const [dateDiff, setDateDiff] = useState(originalDate - Date.now());
+  const [userProfile, setUserProfile] = useState<UserData | null>(null);
   const [menuState, setMenuState] = useState<number>(0);
+
+  const exitFromUserProfile = () => {
+    setUserProfile(null);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
       setDateDiff(originalDate - Date.now());
     }, 1000);
 
+    (async () => {
+      let username = await AsyncStorage.getItem('username');
+      let password = await AsyncStorage.getItem('password');
+
+      if (username && password) {
+        let res = await fetch(
+          `${API_URL}/user/self?username=${username}&password=${password}`
+        );
+        if (res.status != 200) {
+          return;
+        }
+        setUserProfile({ ...(await res.json()), name: username });
+        return;
+      }
+    })();
+
     return () => {
       interval && clearInterval(interval);
     };
   }, []);
+
+  if (userProfile) {
+    return (
+      <UserPage userProfile={userProfile} exitFromHere={exitFromUserProfile} />
+    );
+  }
 
   const convertMillisToDate = (dateDiff: number) => {
     const seconds = Math.floor(dateDiff / 1000);

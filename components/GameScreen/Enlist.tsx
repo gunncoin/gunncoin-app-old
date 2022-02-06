@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Text, View } from '../Themed';
 import { API_URL } from '../../utils/constants';
 
-export default function RuleScreen(props: {
+export default function Enlist(props: {
   setMenuState: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { setMenuState } = props;
@@ -26,8 +26,8 @@ export default function RuleScreen(props: {
         return;
       }
 
-      AsyncStorage.setItem('username', username);
-      AsyncStorage.setItem('password', password);
+      await AsyncStorage.setItem('username', username);
+      await AsyncStorage.setItem('password', password);
       setMenuState(0);
       return;
     }
@@ -42,8 +42,8 @@ export default function RuleScreen(props: {
       return;
     }
 
-    AsyncStorage.setItem('username', username);
-    AsyncStorage.setItem('password', password);
+    await AsyncStorage.setItem('username', username);
+    await AsyncStorage.setItem('password', password);
     setMenuState(0);
     return;
   };
