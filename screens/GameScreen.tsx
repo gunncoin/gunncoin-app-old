@@ -48,7 +48,7 @@ export default function TabTwoScreen() {
     return () => {
       interval && clearInterval(interval);
     };
-  }, []);
+  }, [menuState]);
 
   if (userProfile) {
     return (
