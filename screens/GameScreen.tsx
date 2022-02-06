@@ -9,6 +9,7 @@ import RuleScreen from "../components/GameScreen/RuleScreen";
 import Enlist from "../components/GameScreen/Enlist";
 import { API_URL } from "../utils/constants";
 import UserPage from "../components/GameScreen/UserPage";
+import RequestLocation from "../components/GameScreen/RequestLocation";
 
 export interface UserData {
   name: string;
@@ -80,6 +81,7 @@ export default function TabTwoScreen() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Gunn Recon</Text>
+        <RequestLocation />
         <View
           style={styles.separator}
           lightColor="#eee"
