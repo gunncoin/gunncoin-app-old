@@ -20,6 +20,7 @@ import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import WalletScreen from "../screens/WalletScreen";
 import GameScreen from "../screens/GameScreen";
+import SettingScreen from "../screens/SettingScreen";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -110,7 +111,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Settings"
-        component={GameScreen}
+        component={SettingScreen}
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => (
