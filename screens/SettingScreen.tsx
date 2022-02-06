@@ -1,9 +1,11 @@
-import { Box, Center, Container } from "native-base";
+import { Box, Center, Container, Heading } from "native-base";
 
 export const SettingScreen = () => {
   return (
     <Center>
-      <Container></Container>
+      <Container>
+        <Heading color={"white"}>Settings: TODO</Heading>
+      </Container>
     </Center>
   );
 };

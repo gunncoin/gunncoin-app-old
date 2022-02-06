@@ -23,10 +23,10 @@ export const WalletScreen = () => {
         marginBottom={15}
         width="100%"
       >
-        <Button rounded={"sm"} width="40%" height={50}>
+        <Button rounded={"sm"} width="40%" height={50} variant="outline">
           Send
         </Button>
-        <Button rounded={"sm"} width="40%" height={50}>
+        <Button rounded={"sm"} width="40%" height={50} variant="solid">
           Receive
         </Button>
       </HStack>

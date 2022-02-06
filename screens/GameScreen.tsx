@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button } from 'native-base';
+import { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Button } from "native-base";
 
-import { Text, View } from '../components/Themed';
-import Leaderboard from '../components/GameScreen/Leaderboard';
-import RuleScreen from '../components/GameScreen/RuleScreen';
-import Enlist from '../components/GameScreen/Enlist';
-import { API_URL } from '../utils/constants';
-import UserPage from '../components/GameScreen/UserPage';
+import { Text, View } from "../components/Themed";
+import Leaderboard from "../components/GameScreen/Leaderboard";
+import RuleScreen from "../components/GameScreen/RuleScreen";
+import Enlist from "../components/GameScreen/Enlist";
+import { API_URL } from "../utils/constants";
+import UserPage from "../components/GameScreen/UserPage";
 
 export interface UserData {
   name: string;
@@ -30,8 +30,8 @@ export default function TabTwoScreen() {
     }, 1000);
 
     (async () => {
-      let username = await AsyncStorage.getItem('username');
-      let password = await AsyncStorage.getItem('password');
+      let username = await AsyncStorage.getItem("username");
+      let password = await AsyncStorage.getItem("password");
 
       if (username && password) {
         let res = await fetch(
@@ -63,15 +63,15 @@ export default function TabTwoScreen() {
     const days = Math.floor(hours / 24);
     return `${days}:${
       (hours % 24).toString().length < 2
-        ? '0' + (hours % 24).toString()
+        ? "0" + (hours % 24).toString()
         : (hours % 24).toString()
     }:${
       (minutes % 60).toString().length < 2
-        ? '0' + (minutes % 60).toString()
+        ? "0" + (minutes % 60).toString()
         : (minutes % 60).toString()
     }:${
       (seconds % 60).toString().length < 2
-        ? '0' + (seconds % 60).toString()
+        ? "0" + (seconds % 60).toString()
         : (seconds % 60).toString()
     }`;
   };
@@ -79,7 +79,7 @@ export default function TabTwoScreen() {
   if (menuState == 0) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Gunn Reconnaisance</Text>
+        <Text style={styles.title}>Gunn Recon</Text>
         <View
           style={styles.separator}
           lightColor="#eee"
@@ -96,7 +96,7 @@ export default function TabTwoScreen() {
         </View>
         <View style={styles.enlistContainer}>
           <Button
-            rounded={'lg'}
+            rounded={"lg"}
             onTouchEnd={() => {
               setMenuState(3);
             }}
@@ -108,14 +108,14 @@ export default function TabTwoScreen() {
           <Button.Group
             isAttached
             mx={{
-              base: 'auto',
+              base: "auto",
               md: 0,
             }}
             size="sm"
           >
             <Button
               variant="outlined"
-              style={{ width: '50%' }}
+              style={{ width: "50%" }}
               onTouchEnd={() => {
                 setMenuState((v) => (v == 1 ? 0 : 1));
               }}
@@ -124,7 +124,7 @@ export default function TabTwoScreen() {
             </Button>
             <Button
               variant="outlined"
-              style={{ width: '50%' }}
+              style={{ width: "50%" }}
               onTouchEnd={() => {
                 setMenuState((v) => (v == 2 ? 0 : 2));
               }}
@@ -139,47 +139,48 @@ export default function TabTwoScreen() {
     return <RuleScreen setMenuState={setMenuState} />;
   } else if (menuState == 2) {
     return <Leaderboard setMenuState={setMenuState} />;
-  } else {
+  } else if (menuState == 3) {
     return <Enlist setMenuState={setMenuState} />;
   }
+  return null;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    marginTop: '15%',
+    alignItems: "center",
+    marginTop: "15%",
   },
   title: {
     fontSize: 50,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
-    marginVertical: '10%',
+    marginVertical: "10%",
     height: 1,
-    width: '80%',
+    width: "80%",
   },
   timer: {
-    marginVertical: '10%',
-    height: '10%',
-    width: '40%',
+    marginVertical: "10%",
+    height: "10%",
+    width: "40%",
   },
   bottomContainer: {
-    height: '7%',
-    width: '100%',
-    position: 'absolute',
+    height: "7%",
+    width: "100%",
+    position: "absolute",
     bottom: 0,
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   },
   enlistContainer: {
     marginVertical: 30,
-    height: '20%',
-    width: '60%',
+    height: "20%",
+    width: "60%",
   },
   timerText: {
     fontSize: 20,
     lineHeight: 24,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
