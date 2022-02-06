@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Button } from 'native-base';
 
 import { Text, View } from '../components/Themed';
+import Leaderboard from '../components/GameScreen/Leaderboard';
+import RuleScreen from '../components/GameScreen/RuleScreen';
+import Enlist from '../components/GameScreen/Enlist';
 
 export default function TabTwoScreen() {
   const originalDate = Date.now() + 100000000;
@@ -58,7 +61,14 @@ export default function TabTwoScreen() {
           </Text>
         </View>
         <View style={styles.enlistContainer}>
-          <Button rounded={'lg'}>ENLIST</Button>
+          <Button
+            rounded={'lg'}
+            onTouchEnd={() => {
+              setMenuState(3);
+            }}
+          >
+            ENLIST
+          </Button>
         </View>
         <View style={styles.bottomContainer}>
           <Button.Group
@@ -69,14 +79,22 @@ export default function TabTwoScreen() {
             }}
             size="sm"
           >
-            <Button variant="outlined" style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 1 ? 0 : 1)
-            }}>
+            <Button
+              variant="outlined"
+              style={{ width: '50%' }}
+              onTouchEnd={() => {
+                setMenuState((v) => (v == 1 ? 0 : 1));
+              }}
+            >
               RULES
             </Button>
-            <Button variant="outlined" style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 2 ? 0 : 2)
-            }}>
+            <Button
+              variant="outlined"
+              style={{ width: '50%' }}
+              onTouchEnd={() => {
+                setMenuState((v) => (v == 2 ? 0 : 2));
+              }}
+            >
               STATS
             </Button>
           </Button.Group>
@@ -84,90 +102,11 @@ export default function TabTwoScreen() {
       </View>
     );
   } else if (menuState == 1) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Rules</Text>
-        <View
-          style={styles.separator}
-          lightColor="#eee"
-          darkColor="rgba(255,255,255,0.1)"
-        />
-        <View>
-          <Text
-            style={styles.timerText}
-            lightColor="rgba(0,0,0,0.8)"
-            darkColor="rgba(255,255,255,0.8)"
-          >
-            rules here lmao i dont know the rules please help
-          </Text>
-        </View>
-        <View style={styles.bottomContainer}>
-          <Button.Group
-            isAttached
-            mx={{
-              base: 'auto',
-              md: 0,
-            }}
-            size="sm"
-          >
-            <Button style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 1 ? 0 : 1)
-            }}>
-              RULES
-            </Button>
-            <Button variant="outlined" style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 2 ? 0 : 2)
-            }}>
-              STATS
-            </Button>
-          </Button.Group>
-        </View>
-      </View>
-    );
+    return <RuleScreen setMenuState={setMenuState} />;
+  } else if (menuState == 2) {
+    return <Leaderboard setMenuState={setMenuState} />;
   } else {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Stats Page</Text>
-        <View
-          style={styles.separator}
-          lightColor="#eee"
-          darkColor="rgba(255,255,255,0.1)"
-        />
-        <View style={styles.timer} darkColor="rgba(255,255,255,0.1)">
-          <Text
-            style={styles.timerText}
-            lightColor="rgba(0,0,0,0.8)"
-            darkColor="rgba(255,255,255,0.8)"
-          >
-            Next Round In: {convertMillisToDate(dateDiff)}
-          </Text>
-        </View>
-        <View style={styles.enlistContainer}>
-          <Button rounded={'lg'}>ENLIST</Button>
-        </View>
-        <View style={styles.bottomContainer}>
-          <Button.Group
-            isAttached
-            mx={{
-              base: 'auto',
-              md: 0,
-            }}
-            size="sm"
-          >
-            <Button variant="outlined" style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 1 ? 0 : 1)
-            }}>
-              RULES
-            </Button>
-            <Button style={{ width: '50%' }} onTouchEnd={() => {
-              setMenuState(v => v == 2 ? 0 : 2)
-            }}>
-              STATS
-            </Button>
-          </Button.Group>
-        </View>
-      </View>
-    );
+    return <Enlist setMenuState={setMenuState} />;
   }
 }
 
