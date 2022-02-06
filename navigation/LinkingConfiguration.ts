@@ -15,19 +15,9 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          Wallet: {
-            screens: {
-              TabOneScreen: "one",
-            },
-          },
-          Games: {
-            screens: {
-              TabTwoScreen: "two",
-            },
-          },
-          Settings: {
-            screens: {},
-          },
+          Wallet: {},
+          Games: {},
+          Settings: {},
         },
       },
       Modal: "modal",

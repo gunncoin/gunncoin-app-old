@@ -82,6 +82,11 @@ function BottomTabNavigator() {
       initialRouteName="Wallet"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarLabel: "",
+        tabBarStyle: {
+          backgroundColor: "none",
+          paddingHorizontal: 50,
+        },
       }}
     >
       <BottomTab.Screen
@@ -89,7 +94,8 @@ function BottomTabNavigator() {
         component={WalletScreen}
         options={({ navigation }: RootTabScreenProps<"Wallet">) => ({
           title: "Wallet",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+          headerShown: false,
         })}
       />
       <BottomTab.Screen
@@ -98,6 +104,16 @@ function BottomTabNavigator() {
         options={{
           title: "Games",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={GameScreen}
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
         }}
       />
     </BottomTab.Navigator>
@@ -111,5 +127,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={30} style={{}} {...props} />;
 }
