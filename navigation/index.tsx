@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -85,7 +85,8 @@ function BottomTabNavigator() {
         tabBarLabel: "",
         tabBarStyle: {
           backgroundColor: "none",
-          paddingHorizontal: 50,
+          height: 150,
+          paddingHorizontal: "15%",
         },
       }}
     >
@@ -94,7 +95,7 @@ function BottomTabNavigator() {
         component={WalletScreen}
         options={({ navigation }: RootTabScreenProps<"Wallet">) => ({
           title: "Wallet",
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="wallet" color={color} />,
           headerShown: false,
         })}
       />
@@ -103,7 +104,7 @@ function BottomTabNavigator() {
         component={GameScreen}
         options={{
           title: "Games",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="skin" color={color} />,
           headerShown: false,
         }}
       />
@@ -112,7 +113,9 @@ function BottomTabNavigator() {
         component={GameScreen}
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="setting" color={color} />
+          ),
           headerShown: false,
         }}
       />
@@ -124,8 +127,8 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof AntDesign>["name"];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{}} {...props} />;
+  return <AntDesign size={30} style={{}} {...props} />;
 }
